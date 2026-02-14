@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prime Roleplay | Community</title>
+    <link rel="icon" type="image/png" href="../logo.PNG">
+
+    <link rel="stylesheet" href="/assets/css/core.css" />
+    <link rel="stylesheet" href="/assets/css/layout.css" />
+    <link rel="stylesheet" href="/assets/css/components.css" />
+    <link rel="stylesheet" href="/assets/css/animations.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
+
+    <style>
+        /* [Previous CSS Styles Remain the Same - No Changes Needed Here] */
+        .page-header { padding: 120px 0 60px; text-align: center; background: linear-gradient(to bottom, rgba(0,255,136,0.1), transparent); }
+        .chat-wrapper {
+            max-width: 1000px; margin: 0 auto 80px;
+            background: rgba(15, 15, 15, 0.75);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 3px solid #00ff88;
+            border-radius: 16px;
+            display: flex; flex-direction: column;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+        }
+        #chatBox { height: 550px; overflow-y: auto; padding: 40px; display: flex; flex-direction: column; gap: 25px; }
+        .chat-msg { display: flex; gap: 20px; align-items: flex-start; animation: fadeIn 0.4s ease forwards; }
+        .chat-bubble { background: rgba(255, 255, 255, 0.03); padding: 15px 22px; border-radius: 0 18px 18px 18px; border: 1px solid rgba(255, 255, 255, 0.05); max-width: 85%; }
+        .chat-info { font-size: 0.85rem; color: #00ff88; font-weight: 800; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
+        .chat-time { color: rgba(255, 255, 255, 0.3); font-weight: 400; font-size: 0.7rem; }
+        .chat-avatar { width: 40px; height: 40px; border-radius: 50%; background-size: cover; background-position: center; border: 2px solid rgba(255,255,255,0.1); }
+        .chat-input-area { padding: 30px 40px; background: rgba(0, 0, 0, 0.4); border-top: 1px solid rgba(255, 255, 255, 0.08); }
+        .chat-form { display: flex; gap: 15px; }
+        .chat-form input { flex: 1; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; padding: 18px 25px; border-radius: 50px; font-size: 1rem; }
+        .chat-form input:focus { outline: none; border-color: #00ff88; }
+        
+        /* Profile Badge Styles */
+        .profile-badge { position: relative; display: none; align-items: center; gap: 12px; cursor: pointer; padding: 5px 15px 5px 5px; background: rgba(20, 20, 20, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50px; }
+        .profile-badge:hover { background: rgba(20, 20, 20, 0.9); border-color: #00ff88; }
+        .profile-avatar { width: 36px; height: 36px; background: linear-gradient(135deg, #00ff88, #00b360); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #000; }
+    </style>
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <script src="/assets/js/navbar.js"></script>
+
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+</head>
+<body>
+
+    
+
+    <main>
+        <div class="hero-bg" style="background-image:url('/assets/images/hero/hero-bg.jpg'); position: fixed; inset: 0; z-index: -1; opacity: 0.2;"></div>
+
+        <section class="page-header">
+            <div class="container">
+                <h1>COMMUNITY <span class="text-primary">HUB</span></h1>
+                <p>Real-time citizen logs and global communication.</p>
+            </div>
+        </section>
+
+        <section class="container" style="padding: 0 20px;">
+            <div class="chat-wrapper">
+                <div id="chatBox">
+                    <p id="statusMsg" style="text-align: center; color: #00ff88; opacity: 0.8;">CONNECTING TO SERVER...</p>
+                </div>
+
+                <div class="chat-input-area">
+                    <div id="loginWarning" style="display: none; text-align: center; color: rgba(255,255,255,0.4);">
+                        SYSTEM: ACCESS RESTRICTED. <a href="/pages/login.html" style="color:#00ff88;">LOGIN</a> TO BROADCAST.
+                    </div>
+                    
+                    <form id="chatForm" class="chat-form" style="display: none;">
+                        <input type="text" id="msgInput" placeholder="Broadcast to the community..." maxlength="500" required autocomplete="off">
+                        <button type="submit" class="btn-mega" style="border-radius: 50px; min-width: 140px;">SEND</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/config/site.config.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userJson = localStorage.getItem('prime_user');
+            const guestBtn = document.getElementById('guestActionBtn');
+            const userBadge = document.getElementById('userActionBadge');
+            const chatForm = document.getElementById('chatForm');
+            const loginWarning = document.getElementById('loginWarning');
+            const chatBox = document.getElementById('chatBox');
+            const statusMsg = document.getElementById('statusMsg');
+
+            // 1. Auth & Header Logic
+            if (userJson) {
+                const user = JSON.parse(userJson);
+                guestBtn.style.display = 'none';
+                userBadge.style.display = 'flex';
+                chatForm.style.display = 'flex';
+                
+                document.getElementById('navUsername').innerText = user.username;
+                const avatarEl = document.getElementById('navAvatar');
+                const savedAvatar = localStorage.getItem('prime_avatar_url');
+                
+                if (savedAvatar) {
+                    avatarEl.style.backgroundImage = `url('${savedAvatar}')`;
+                    avatarEl.style.backgroundSize = "cover";
+                    avatarEl.innerText = '';
+                } else {
+                    avatarEl.innerText = user.username.charAt(0).toUpperCase();
+                }
+
+                // Chat Submission
+                chatForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const msg = document.getElementById('msgInput').value.trim();
+                    if(!msg) return;
+
+                    try {
+                        // USE CONFIG URL
+                        await fetch(`${SiteConfig.apiBaseUrl}/community/send`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                username: user.username,
+                                message: msg,
+                                avatar_url: localStorage.getItem('prime_avatar_url') || ""
+                            })
+                        });
+                        document.getElementById('msgInput').value = '';
+                        fetchMessages();
+                    } catch (err) { 
+                        alert("Failed to send message. Server might be offline.");
+                    }
+                });
+            } else {
+                loginWarning.style.display = 'block';
+            }
+            
+            // Initial Fetch
+            fetchMessages();
+            setInterval(fetchMessages, 5000);
+        });
+
+        async function fetchMessages() {
+            const chatBox = document.getElementById('chatBox');
+            
+            try {
+                // USE CONFIG URL
+                const response = await fetch(`${SiteConfig.apiBaseUrl}/community/messages`);
+                
+                if (!response.ok) throw new Error("Server Unreachable");
+
+                const messages = await response.json();
+                
+                // If we get data, clear the status message
+                if (messages.length >= 0) {
+                     // Only clear if it's the first load or if "Connecting..." is still there
+                     if(chatBox.querySelector('#statusMsg')) chatBox.innerHTML = '';
+                }
+
+                // Build HTML (Mocking "React-like" update to avoid flickering would be better, 
+                // but for simple HTML, we rebuild carefully)
+                let html = '';
+                messages.forEach(msg => {
+                    const time = new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    const avatarStyle = msg.avatar_url ? `style="background-image: url('${msg.avatar_url}');"` : '';
+                    const avatarContent = msg.avatar_url ? '' : msg.username.charAt(0).toUpperCase();
+                    const letterColor = msg.avatar_url ? 'transparent' : '#000';
+
+                    html += `
+                        <div class="chat-msg">
+                            <div class="chat-avatar" ${avatarStyle} style="color:${letterColor}">${avatarContent}</div>
+                            <div class="chat-bubble">
+                                <div class="chat-info">${msg.username} <span class="chat-time">${time}</span></div>
+                                <div class="chat-text">${msg.message}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                // Only update DOM if content changed to prevent scroll jumping
+                if(chatBox.innerHTML !== html && html !== '') {
+                    chatBox.innerHTML = html;
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }
+
+            } catch (err) { 
+                console.error(err);
+                // Show friendly error if completely empty
+                if(chatBox.children.length <= 1) {
+                    chatBox.innerHTML = `<p style="text-align: center; color: #ff4d4d; margin-top: 20px;">
+                        CONNECTION FAILED<br>
+                        <span style="font-size:0.8rem; opacity:0.7;">Ensure Server is running at ${SiteConfig.apiBaseUrl}</span>
+                    </p>`;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

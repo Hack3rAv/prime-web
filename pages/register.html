@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prime Roleplay | Apply</title>
+    <link rel="icon" type="image/png" href="logo.PNG">
+
+    <link rel="stylesheet" href="/assets/css/core.css" />
+    <link rel="stylesheet" href="/assets/css/layout.css" />
+    <link rel="stylesheet" href="/assets/css/components.css" />
+    <link rel="stylesheet" href="/assets/css/animations.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
+        <link rel="icon" type="image/png" href="../logo.PNG">
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <script src="/assets/js/navbar.js"></script>
+
+    <style>
+        .auth-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 60px;
+        }
+        .auth-card {
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .auth-header h2 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .auth-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        .form-grid {
+            display: grid;
+            gap: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #00ff88;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .btn-full {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .terms-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.4;
+        }
+        .terms-check input {
+            margin-top: 3px;
+        }
+        
+        /* Status Message Styling */
+        #statusMessage {
+            display: none;
+            margin-top: 15px;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        .status-error {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.4);
+            color: #ffcccc;
+        }
+        .status-success {
+            background: rgba(0, 255, 136, 0.2);
+            border: 1px solid rgba(0, 255, 136, 0.4);
+            color: #ccffdd;
+        }
+    </style>
+
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+</head>
+<body>
+
+
+    <main>
+        <section class="auth-section">
+            <div class="hero-bg" style="background-image:url('/assets/images/hero/hero-bg.jpg'); position: absolute; inset: 0; z-index: -1;"></div>
+            <div class="hero-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.6); z-index: -1;"></div>
+
+            <div class="auth-card glass-panel">
+                <div class="auth-header">
+                    <h2>Citizen Application</h2>
+                    <p>Create your identity to begin your story.</p>
+                </div>
+
+                <form id="registerForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="login">Username</label>
+                            <input type="text" id="login" name="login" class="form-input" placeholder="Desired Username" required minlength="3" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="name@example.com" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" class="form-input" placeholder="Create a strong password" required minlength="6" />
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password</label>
+                            <input type="password" id="confirm_password" name="confirm_password" class="form-input" placeholder="Repeat password" required />
+                        </div>
+                        <div class="terms-check">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms">I have read the <a href="/pages/rules.html" style="color:#00ff88;">Server Rules</a> and understand that Prime Roleplay is a serious RP community.</label>
+                        </div>
+                        
+                        <button type="submit" class="btn-mega btn-full" id="submitBtn">CREATE ACCOUNT</button>
+                    </div>
+
+                    <div id="statusMessage"></div>
+
+                    <div style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: rgba(255,255,255,0.5);">
+                        Already a citizen? <a href="/pages/login.html" style="color: #fff; text-decoration: underline;">Login Here</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <h2>POWERED BY <span class="text-primary">NEOPIX</span></h2>
+            <p>&copy; 2025 Prime Roleplay. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/config/site.config.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    <script src="/assets/js/app.js"></script>
+
+    <script>
+        const form = document.getElementById('registerForm');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirm_password');
+        const statusMsg = document.getElementById('statusMessage');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault(); // Stop page refresh
+
+            // 1. Check Passwords Match Client-side
+            if (password.value !== confirmPassword.value) {
+                showStatus("Passwords do not match!", "error");
+                return;
+            }
+
+            // 2. Prepare Data
+            const formData = {
+                login: document.getElementById('login').value,
+                email: document.getElementById('email').value,
+                password: password.value
+            };
+
+            // Disable button to prevent double clicks
+            submitBtn.disabled = true;
+            submitBtn.innerText = "CHECKING...";
+
+            try {
+                // 3. Send to Node.js Backend (Change IP if needed)
+                const response = await fetch('http://localhost:3000/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (response.status === 200) {
+                    // Success
+                    showStatus(result.message, "success");
+                    submitBtn.innerText = "SUCCESS";
+                    
+                    // Redirect after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = '/pages/login.html'; 
+                    }, 2000);
+                } else {
+                    // Error (Duplicate name, etc.)
+                    showStatus(result.message, "error");
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "CREATE ACCOUNT";
+                }
+
+            } catch (error) {
+                showStatus("Cannot connect to server. Is the backend running?", "error");
+                submitBtn.disabled = false;
+                submitBtn.innerText = "CREATE ACCOUNT";
+                console.error(error);
+            }
+        });
+
+        function showStatus(message, type) {
+            statusMsg.style.display = 'block';
+            statusMsg.innerText = message;
+            if (type === 'error') {
+                statusMsg.className = 'status-error';
+            } else {
+                statusMsg.className = 'status-success';
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+/* =====================================================
+   CORE DESIGN SYSTEM
+   ===================================================== */
+
+/* -----------------------------
+   FONT IMPORTS
+----------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Rajdhani:wght@600;700;800&display=swap');
+
+/* -----------------------------
+   CSS VARIABLES
+----------------------------- */
+:root {
+    /* Colors */
+    --bg-deep: #050505;
+    --bg-panel: rgba(20, 20, 25, 0.92);
+
+    --primary: #ff9933;          /* CTA / Highlight */
+    --accent: #ff1a1a;           /* Red neon / danger */
+    --success: #00ff41;          /* Online status */
+
+    --text-main: #ffffff;
+    --text-muted: #9a9a9a;
+
+    --glass: rgba(255, 255, 255, 0.05);
+    --border-soft: rgba(255, 255, 255, 0.08);
+
+    /* Typography */
+    --font-head: 'Rajdhani', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Shape */
+    --skew-shape: polygon(
+        10px 0,
+        100% 0,
+        100% calc(100% - 10px),
+        calc(100% - 10px) 100%,
+        0 100%,
+        0 10px
+    );
+}
+
+/* -----------------------------
+   RESET
+----------------------------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: auto; /* Lenis controls scrolling */
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--bg-deep);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* -----------------------------
+   GLOBAL ELEMENTS
+----------------------------- */
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    border: none;
+    background: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* -----------------------------
+   TYPOGRAPHY
+----------------------------- */
+h1, h2, h3, h4, h5 {
+    font-family: var(--font-head);
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.text-primary {
+    color: var(--primary);
+}
+
+.text-accent {
+    color: var(--accent);
+}
+
+/* -----------------------------
+   CONTAINER
+----------------------------- */
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+}
+
+/* -----------------------------
+   UTILITY
+----------------------------- */
+.hidden {
+    display: none !important;
+}

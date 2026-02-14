@@ -1,0 +1,104 @@
+/* =====================================================
+   RESPONSIVE ADAPTATIONS
+   ===================================================== */
+
+/* -----------------------------
+   TABLET & SMALL LAPTOP
+----------------------------- */
+@media (max-width: 1024px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero-title {
+        font-size: 3.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .feature-strip {
+        padding: 80px 0;
+    }
+
+    .final-cta {
+        padding: 100px 0;
+    }
+}
+
+/* -----------------------------
+   MOBILE DEVICES
+----------------------------- */
+@media (max-width: 768px) {
+
+    header {
+        height: 70px;
+    }
+
+    main#app-content {
+        padding-top: 70px;
+    }
+
+    .hero-section {
+        min-height: 90vh;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-title {
+        font-size: 2.6rem;
+    }
+
+    .hero-eyebrow {
+        font-size: 0.7rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-mega,
+    .btn-outline {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .final-cta h2 {
+        font-size: 2rem;
+    }
+
+    .final-cta p {
+        font-size: 0.95rem;
+    }
+
+    footer {
+        padding: 40px 0;
+    }
+}
+
+/* -----------------------------
+   VERY SMALL DEVICES
+----------------------------- */
+@media (max-width: 480px) {
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .container {
+        padding: 0 18px;
+    }
+}

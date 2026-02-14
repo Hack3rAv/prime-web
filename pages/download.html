@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prime Roleplay | Download</title>
+    <link rel="icon" type="image/png" href="logo.PNG">
+
+    <!-- ================= CORE STYLES ================= -->
+    <link rel="stylesheet" href="/assets/css/core.css" />
+    <link rel="stylesheet" href="/assets/css/layout.css" />
+    <link rel="stylesheet" href="/assets/css/components.css" />
+    <link rel="stylesheet" href="/assets/css/animations.css" />
+    <link rel="stylesheet" href="/assets/css/wiki.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
+
+    <!-- ================= LENIS ================= -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+        <link rel="icon" type="image/png" href="../logo.PNG">
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <script src="/assets/js/navbar.js"></script>
+</head>
+<body>
+
+
+
+<!-- ================= MAIN CONTENT ================= -->
+<main>
+
+<!-- ================= PAGE HEADER ================= -->
+<section class="page-header">
+    <div class="container">
+        <h1>
+            DOWNLOAD <span class="text-accent">LAUNCHER</span>
+        </h1>
+        <p>
+            Download the official Prime Roleplay Launcher to keep your game
+            updated and connect securely to the server.
+        </p>
+    </div>
+</section>
+
+<!-- ================= REQUIREMENTS ================= -->
+<section class="feature-section">
+    <div class="container">
+
+        <h2 class="section-title">REQUIREMENTS</h2>
+
+        <div class="feature-grid">
+
+            <div class="glass-panel">
+                <h3>GTA V (ORIGINAL)</h3>
+                <p>
+                    You must own a legitimate copy of Grand Theft Auto V
+                    on Steam, Epic Games, or Rockstar Launcher.
+                </p>
+            </div>
+
+            <div class="glass-panel">
+                <h3>RAGE:MP CLIENT</h3>
+                <p>
+                    Required to connect to multiplayer servers.
+                    Install it before launching Prime RP.
+                </p>
+            </div>
+
+            <div class="glass-panel">
+                <h3>WINDOWS 64-BIT</h3>
+                <p>
+                    Launcher supports Windows 10 and Windows 11 (64-bit only).
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= LAUNCHER DOWNLOAD ================= -->
+<section class="feature-section alt-bg">
+    <div class="container">
+
+        <h2 class="section-title">Prime ROLEPLAY LAUNCHER</h2>
+
+        <div class="glass-panel" style="max-width:720px;margin:0 auto;text-align:center;">
+
+            <p style="margin-bottom:30px;">
+                Our custom launcher handles updates, verifies files,
+                and ensures a smooth connection to the server.
+            </p>
+
+            <!-- 🔥 DIRECT GITHUB RELEASE DOWNLOAD -->
+            <a
+                id="downloadLauncherBtn"
+                href="https://github.com/Hack3rAv/IN-Launcher/releases/latest/download/IN-Launcher-Setup.exe"
+                class="btn-mega"
+                download
+            >
+                DOWNLOAD LAUNCHER
+            </a>
+
+            <p id="launcherVersion"
+               style="margin-top:12px;font-size:.8rem;opacity:.6;">
+                Automatically downloads the latest version
+            </p>
+
+            <p style="margin-top:6px;font-size:.75rem;opacity:.5;">
+                Windows 10 / 11 • 64-bit
+            </p>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= SETUP STEPS ================= -->
+<section class="feature-section">
+    <div class="container">
+
+        <h2 class="section-title">SETUP INSTRUCTIONS</h2>
+
+        <div class="wiki-card">
+            <h3>STEP 1 — INSTALL GTA V</h3>
+            <p>
+                Install GTA V and complete the first-time setup.
+            </p>
+        </div>
+
+        <div class="wiki-card">
+            <h3>STEP 2 — INSTALL RAGE:MP</h3>
+            <p>
+                Download RAGE:MP from the official website and link your GTA V.
+            </p>
+        </div>
+
+        <div class="wiki-card">
+            <h3>STEP 3 — INSTALL LAUNCHER</h3>
+            <p>
+                Download and install the Prime Roleplay Launcher.
+                Run as administrator on first launch.
+            </p>
+        </div>
+
+        <div class="wiki-card">
+            <h3>STEP 4 — JOIN SERVER</h3>
+            <p>
+                Open the launcher, log in, and connect to Prime Roleplay.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="final-cta">
+    <div class="container">
+
+        <h2>NEED HELP?</h2>
+
+        <p>
+            Facing issues during installation?
+            Join our Discord support server.
+        </p>
+
+        <a href="https://discord.gg/" target="_blank" class="btn-outline">
+            JOIN DISCORD SUPPORT
+        </a>
+
+    </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    <div class="container footer-content">
+        <h2>
+            POWERED BY <span class="text-primary">NEOPIX</span>
+        </h2>
+        <p>
+            &copy; 2025 Prime Roleplay. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<!-- ================= OPTIONAL VERSION FETCH (SAFE) ================= -->
+<script>
+(async () => {
+    try {
+        const res = await fetch(
+            "https://api.github.com/repos/Hack3rAv/IN-Launcher/releases/latest"
+        );
+        const data = await res.json();
+        if (data?.tag_name) {
+            document.getElementById("launcherVersion").textContent =
+                "Latest version: " + data.tag_name;
+        }
+    } catch (e) {
+        // silently fail
+    }
+})();
+</script>
+
+<!-- ================= CORE SCRIPTS ================= -->
+<script src="/config/site.config.js"></script>
+<script src="/assets/js/utils.js"></script>
+<script src="/assets/js/parallax.js"></script>
+<script src="/assets/js/app.js"></script>
+
+</body>
+</html>

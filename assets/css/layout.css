@@ -1,0 +1,404 @@
+/* =====================================================
+   GLOBAL LAYOUT
+   ===================================================== */
+
+/* -----------------------------
+   HEADER / NAVBAR
+----------------------------- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 80px;
+    z-index: 1000;
+    background: rgba(5, 5, 5, 0.95);
+    border-bottom: 1px solid var(--border-soft);
+    display: flex;
+    align-items: center;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-family: var(--font-head);
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    color: #ccc;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* -----------------------------
+   MAIN APP CONTAINER
+----------------------------- */
+main#app-content {
+    min-height: calc(100vh - 80px);
+}
+
+/* -----------------------------
+   HERO SECTION
+----------------------------- */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+    will-change: transform;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(5,5,5,0.95),
+        rgba(5,5,5,0.3)
+    );
+    z-index: -1;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero-eyebrow {
+    color: var(--primary);
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    line-height: 0.95;
+    margin-bottom: 24px;
+}
+
+.hero-title span {
+    color: var(--accent);
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    max-width: 600px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.hero-note {
+    font-size: 0.75rem;
+    opacity: 0.6;
+}
+
+/* -----------------------------
+   FEATURE STRIP
+----------------------------- */
+.feature-strip {
+    padding: 100px 0;
+    background: #0a0a0a;
+    border-top: 1px solid var(--border-soft);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* -----------------------------
+   FINAL CTA
+----------------------------- */
+.final-cta {
+    padding: 120px 0;
+    text-align: center;
+    background: linear-gradient(
+        to bottom,
+        #050505,
+        #0b0b0b
+    );
+    border-top: 1px solid var(--border-soft);
+}
+
+.final-cta h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+}
+
+.final-cta p {
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+/* -----------------------------
+   FOOTER
+----------------------------- */
+footer {
+    padding: 60px 0;
+    background: #080808;
+    border-top: 1px solid var(--accent);
+    text-align: center;
+}
+
+.footer-content h2 {
+    margin-bottom: 10px;
+    color: var(--text-muted);
+}
+
+.footer-content p {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   PAGE HEADERS & FEATURE SECTIONS
+   ===================================================== */
+
+/* -----------------------------
+   PAGE HEADER
+----------------------------- */
+.page-header {
+    padding: 140px 0 80px;
+    background: linear-gradient(
+        to bottom,
+        #050505,
+        #0b0b0b
+    );
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.page-header h1 {
+    font-size: 3.2rem;
+    margin-bottom: 16px;
+}
+
+.page-header p {
+    max-width: 650px;
+    font-size: 1.05rem;
+}
+
+/* -----------------------------
+   FEATURE SECTIONS
+----------------------------- */
+.feature-section {
+    padding: 100px 0;
+}
+
+.feature-section.alt-bg {
+    background: #0a0a0a;
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.section-title {
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    margin-top: 12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   MAINTENANCE PAGE
+   ===================================================== */
+
+.maintenance-page {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(
+        to bottom,
+        #050505,
+        #0a0a0a
+    );
+}
+
+.maintenance-content {
+    max-width: 700px;
+}
+
+.maintenance-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.maintenance-text {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.maintenance-subtext {
+    font-size: 0.95rem;
+    opacity: 0.7;
+    margin-bottom: 40px;
+}
+
+.maintenance-actions {
+    margin-bottom: 30px;
+}
+
+.maintenance-note {
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.nav-links a.active {
+    color: var(--primary);
+    position: relative;
+}
+
+.nav-links a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 2px;
+    background: var(--primary);
+}
+
+
+
+
+
+
+
+
+
+.maintenance-page .maintenance-title {
+    letter-spacing: 2px;
+}
+
+.maintenance-page .maintenance-text {
+    max-width: 520px;
+    margin: 0 auto 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+.nav-links a {
+    padding: 8px 4px;
+}

@@ -1,0 +1,261 @@
+/* =====================================================
+   DISABLE PUBLIC SITE LAYOUT FOR ADMIN PAGES
+   ===================================================== */
+
+.admin-body header,
+.admin-body footer,
+.admin-body .nav-container,
+.admin-body .site-header {
+    display: none !important;
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   ADMIN PANEL STYLES
+   Depends on core.css variables
+   ===================================================== */
+
+.admin-body {
+    background: #060606;
+    color: var(--text-main);
+    font-family: var(--font-body);
+    margin: 0;
+}
+
+/* =====================================================
+   LAYOUT
+   ===================================================== */
+
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* =====================================================
+   SIDEBAR
+   ===================================================== */
+
+.admin-sidebar {
+    width: 260px;
+    background: #0a0a0a;
+    border-right: 1px solid var(--border-soft);
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-brand {
+    padding: 0 30px 30px;
+    font-family: var(--font-head);
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--text-main);
+}
+
+.admin-brand span {
+    color: var(--primary);
+}
+
+.admin-brand small {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    opacity: 0.6;
+}
+
+.admin-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0 16px;
+}
+
+.admin-nav a {
+    padding: 12px 16px;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #888;
+    border-left: 3px solid transparent;
+    transition: 0.25s;
+}
+
+.admin-nav a:hover {
+    color: var(--text-main);
+    background: rgba(255, 0, 0, 0.08);
+}
+
+.admin-nav a.active {
+    color: var(--text-main);
+    border-left-color: var(--primary);
+    background: linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 0.15),
+        transparent
+    );
+}
+
+/* =====================================================
+   MAIN AREA
+   ===================================================== */
+
+.admin-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =====================================================
+   TOP BAR
+   ===================================================== */
+
+.admin-topbar {
+    height: 70px;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-soft);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+}
+
+.admin-topbar h1 {
+    font-family: var(--font-head);
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+}
+
+.role-badge {
+    font-size: 0.65rem;
+    padding: 6px 10px;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+/* =====================================================
+   CONTENT
+   ===================================================== */
+
+.admin-content {
+    padding: 40px;
+}
+
+/* =====================================================
+   SECTIONS
+   ===================================================== */
+
+.admin-section {
+    margin-bottom: 60px;
+}
+
+.admin-section-title {
+    font-family: var(--font-head);
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+/* =====================================================
+   GRID & CARDS
+   ===================================================== */
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.admin-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-soft);
+    padding: 24px;
+    transition: 0.25s;
+}
+
+.admin-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-2px);
+}
+
+.admin-card-wide {
+    max-width: 900px;
+}
+
+.admin-card h3 {
+    font-family: var(--font-head);
+    font-size: 1rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.admin-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0.85;
+}
+
+/* =====================================================
+   LISTS & NOTES
+   ===================================================== */
+
+.admin-list {
+    margin: 20px 0;
+    padding-left: 18px;
+}
+
+.admin-list li {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.admin-note {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 900px) {
+    .admin-layout {
+        flex-direction: column;
+    }
+
+    .admin-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-soft);
+    }
+
+    .admin-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .admin-nav a {
+        border-left: none;
+        border-bottom: 2px solid transparent;
+    }
+
+    .admin-nav a.active {
+        border-bottom-color: var(--primary);
+    }
+
+    .admin-content {
+        padding: 24px;
+    }
+}

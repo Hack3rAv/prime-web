@@ -1,0 +1,247 @@
+/* =====================================================
+   WIKI PAGE — GLOBAL-LAYOUT COMPATIBLE
+   ===================================================== */
+
+.wiki-page {
+    padding: 80px 0;
+    background: linear-gradient(to bottom, #050505, #0a0a0a);
+}
+
+/* =====================================================
+   CONTAINER
+   ===================================================== */
+
+.wiki-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 32px;
+
+    align-items: start;
+}
+
+/* =====================================================
+   SIDEBAR
+   ===================================================== */
+
+.wiki-sidebar {
+    position: sticky;
+    top: 40px;
+
+    max-height: calc(100vh - 160px);
+    overflow: hidden;
+
+    z-index: 5;
+}
+
+.wiki-sidebar::before {
+    content: "WIKI NAVIGATION";
+    display: block;
+    margin-bottom: 12px;
+
+    font-family: var(--font-head);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    font-weight: 800;
+    color: var(--text-muted);
+}
+
+/* =====================================================
+   SEARCH
+   ===================================================== */
+
+.wiki-search {
+    cursor: text;
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 24px;
+
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--border-soft);
+    color: var(--text-main);
+
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+
+    outline: none;
+    clip-path: polygon(4% 0, 100% 0, 96% 100%, 0% 100%);
+}
+
+.wiki-search::placeholder {
+    color: #777;
+    letter-spacing: 2px;
+}
+
+.wiki-search:not(:placeholder-shown) {
+    border-color: var(--primary);
+}
+/* =====================================================
+   NAVIGATION
+   ===================================================== */
+
+.wiki-nav {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-soft);
+    backdrop-filter: blur(6px);
+
+    padding: 20px 0;
+    clip-path: polygon(0 0, 98% 0, 100% 100%, 2% 100%);
+
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+}
+
+.wiki-nav::-webkit-scrollbar {
+    width: 4px;
+}
+
+.wiki-nav::-webkit-scrollbar-thumb {
+    background: var(--primary);
+}
+
+.wiki-nav-group {
+    margin-bottom: 20px;
+}
+
+.wiki-nav-title {
+    padding: 0 20px 10px;
+
+    font-family: var(--font-head);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    color: var(--primary);
+}
+
+.wiki-nav-item {
+    display: block;
+    position: relative;
+
+    padding: 12px 20px;
+
+    font-family: var(--font-head);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    color: #888;
+    transition: 0.25s;
+}
+
+.wiki-nav-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 3px;
+    height: 100%;
+    background: transparent;
+}
+
+.wiki-nav-item:hover,
+.wiki-nav-item.active {
+    color: #fff;
+    background: linear-gradient(
+        90deg,
+        rgba(255,153,51,0.12),
+        transparent
+    );
+}
+
+.wiki-nav-item:hover::before,
+.wiki-nav-item.active::before {
+    background: var(--primary);
+}
+
+/* =====================================================
+   CONTENT
+   ===================================================== */
+
+.wiki-content {
+    padding-right: 10px;
+}
+
+/* =====================================================
+   SECTIONS & CARDS
+   ===================================================== */
+
+.wiki-section {
+    margin-bottom: 60px;
+}
+
+.wiki-section h2 {
+    font-family: var(--font-head);
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+}
+
+.wiki-card {
+    position: relative;
+
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-soft);
+    border-left: 3px solid rgba(255,255,255,0.1);
+
+    padding: 30px 34px;
+    margin-bottom: 20px;
+
+    transition: 0.25s;
+}
+
+.wiki-card:hover {
+    background: rgba(255,255,255,0.05);
+    border-left-color: var(--primary);
+}
+
+.wiki-card h3 {
+    font-family: var(--font-head);
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.wiki-card p {
+    color: #aaa;
+    line-height: 1.7;
+}
+
+.wiki-card .badge {
+    position: absolute;
+    top: 30px;
+    right: 34px;
+
+    font-family: var(--font-head);
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    padding: 4px 10px;
+    border: 1px solid currentColor;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 900px) {
+    .wiki-container {
+        grid-template-columns: 1fr;
+    }
+
+    .wiki-sidebar {
+        position: relative;
+        top: 0;
+        max-height: none;
+        margin-bottom: 40px;
+    }
+}

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prime Roleplay | Home</title>
+    <link rel="icon" type="image/png" href="logo.PNG">
+
+    <link rel="stylesheet" href="/assets/css/core.css" />
+    <link rel="stylesheet" href="/assets/css/layout.css" />
+    <link rel="stylesheet" href="/assets/css/components.css" />
+    <link rel="stylesheet" href="/assets/css/animations.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
+    <link rel="icon" type="image/png" href="logo.PNG">
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <script src="/assets/js/navbar.js"></script>
+
+    <!-- <style>
+        /* ================= PROFILE BADGE (THE TRIGGER) ================= */
+        .profile-badge {
+            position: relative;
+            display: none; /* JS toggles this to 'flex' */
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            padding: 5px 15px 5px 5px; /* Spacing for avatar */
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* HOVER STATE: NEON GLOW */
+        .profile-badge:hover {
+            background: rgba(20, 20, 20, 0.9);
+            border-color: #00ff88;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -5px rgba(0, 255, 136, 0.25);
+        }
+
+        /* AVATAR CIRCLE - UPDATED FOR IMAGES */
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            /* Default Gradient Fallback */
+            background: linear-gradient(135deg, #00ff88, #00b360);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #000;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+            border: 2px solid transparent; /* Keeps sizing consistent */
+        }
+
+        /* USERNAME TEXT */
+        .profile-name {
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ROTATING ARROW ICON */
+        .profile-arrow {
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid rgba(255,255,255,0.5);
+            border-bottom: 2px solid rgba(255,255,255,0.5);
+            transform: rotate(45deg);
+            transition: transform 0.3s ease;
+            margin-top: -3px;
+        }
+
+        .profile-badge:hover .profile-arrow {
+            transform: rotate(-135deg) translate(-2px, -2px);
+            border-color: #00ff88;
+        }
+
+        /* ================= DROPDOWN MENU ================= */
+        .profile-dropdown-menu {
+            position: absolute;
+            top: 150%;
+            right: 0;
+            width: 280px;
+            background: rgba(15, 15, 15, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 2px solid #00ff88;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px) scale(0.95);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .profile-badge:hover .profile-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        /* DROPDOWN CONTENT */
+        .dropdown-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .dropdown-role-badge {
+            display: inline-block;
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            font-size: 0.65rem;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-top: 5px;
+            letter-spacing: 1px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .dropdown-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            transition: background 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .stat-box:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .text-green { color: #00ff88; }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 15px;
+            margin-bottom: 5px;
+            background: transparent;
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border-color: rgba(255,255,255,0.05);
+            transform: translateX(5px);
+        }
+
+        .dropdown-item.logout {
+            margin-top: 15px;
+            color: #ff4d4d;
+            justify-content: center;
+            font-weight: 600;
+            background: rgba(255, 77, 77, 0.05);
+            border: 1px solid rgba(255, 77, 77, 0.1);
+        }
+
+        .dropdown-item.logout:hover {
+            background: rgba(255, 77, 77, 0.15);
+            border-color: rgba(255, 77, 77, 0.3);
+            transform: none;
+        }
+    </style> -->
+
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+</head>
+<body>
+    
+
+
+    <main>
+
+        <section class="hero-section">
+            <div
+                class="hero-bg"
+                data-parallax
+                data-speed="0.15"
+                style="background-image:url('/assets/images/hero/hero-bg.jpg');">
+            </div>
+            <div class="hero-overlay"></div>
+
+            <div class="container hero-content">
+                <h4 class="hero-eyebrow">
+                    WELCOME TO A SERIOUS ROLEPLAY EXPERIENCE
+                </h4>
+
+                <h1 class="hero-title">
+                    Prime <span>ROLEPLAY</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    A mature, story-driven GTA V roleplay server built for realism,
+                    discipline, and long-term character progression.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="/pages/download.html" class="btn-mega">
+                        DOWNLOAD LAUNCHER
+                    </a>
+                    <a href="https://discord.gg/vfdhqJVB3Z" target="_blank" class="btn-outline">
+                        JOIN DISCORD
+                    </a>
+                </div>
+
+                <p class="hero-note">
+                    GTA V (Original License) & RAGE:MP Required
+                </p>
+            </div>
+        </section>
+
+        <section class="feature-strip">
+            <div class="container feature-grid">
+                <div class="glass-panel">
+                    <h3>REALISTIC ECONOMY</h3>
+                    <p>Player-driven markets, legal businesses, illegal empires, and a fully balanced financial system.</p>
+                </div>
+                <div class="glass-panel">
+                    <h3>FACTIONS & GANGS</h3>
+                    <p>Structured factions, strict roleplay rules, and territory-based gang systems.</p>
+                </div>
+                <div class="glass-panel">
+                    <h3>ACTIVE ADMINISTRATION</h3>
+                    <p>Professional admins, appeal systems, and strict enforcement of roleplay quality.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="final-cta">
+            <div class="container">
+                <h2>READY TO BEGIN YOUR STORY?</h2>
+                <p>Join a growing community of serious roleplayers and experience GTA V like never before.</p>
+                <div class="cta-actions">
+                    <a href="/pages/apply.html" class="btn-mega">APPLY NOW</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <h2>
+                POWERED BY <span class="text-primary">NEOPIX</span>
+            </h2>
+            <p>
+                &copy; 2025 Prime Roleplay. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="/config/site.config.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    <script src="/assets/js/serverStatus.js"></script>
+    <script src="/assets/js/parallax.js"></script>
+    <script src="/assets/js/horizontal.js"></script>
+    <script src="/assets/js/app.js"></script>
+    
+
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Get User Data from LocalStorage
+            const userJson = localStorage.getItem('prime_user');
+            const guestBtn = document.getElementById('guestActionBtn');
+            const userBadge = document.getElementById('userActionBadge');
+
+            if (userJson) {
+                // === USER IS LOGGED IN ===
+                const user = JSON.parse(userJson);
+
+                // Hide Register Button
+                if(guestBtn) guestBtn.style.display = 'none';
+                
+                // Show Profile Badge
+                if(userBadge) {
+                    userBadge.style.display = 'flex';
+                    
+                    // Update Username
+                    document.getElementById('navUsername').innerText = user.username;
+                    document.getElementById('menuUsername').innerText = user.username;
+
+                    // --- AVATAR LOGIC START ---
+                    const avatarEl = document.getElementById('navAvatar');
+                    const savedAvatar = localStorage.getItem('prime_avatar_url');
+
+                    if (savedAvatar) {
+                        // If they set an avatar in Dashboard, show image
+                        avatarEl.style.backgroundImage = `url('${savedAvatar}')`;
+                        avatarEl.innerText = ''; // Remove letter
+                        avatarEl.style.border = '2px solid rgba(255, 255, 255, 0.2)';
+                    } else {
+                        // Fallback to Letter
+                        avatarEl.innerText = user.username.charAt(0).toUpperCase();
+                        // Reset background in case they switched accounts
+                        avatarEl.style.backgroundImage = 'linear-gradient(135deg, #00ff88, #00b360)';
+                        avatarEl.style.border = 'none';
+                    }
+                    // --- AVATAR LOGIC END ---
+                }
+            } else {
+                // === USER IS GUEST ===
+                if(guestBtn) guestBtn.style.display = 'inline-block';
+                if(userBadge) userBadge.style.display = 'none';
+            }
+        });
+
+        // Logout Function
+        function logoutUser() {
+            localStorage.removeItem('prime_user');
+            localStorage.removeItem('prime_token');
+            window.location.reload();
+        }
+    </script> -->
+
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prime Roleplay | Dashboard</title>
+    <link rel="icon" type="image/png" href="/logo.PNG">
+
+    <link rel="stylesheet" href="/assets/css/core.css" />
+    <link rel="stylesheet" href="/assets/css/layout.css" />
+    <link rel="stylesheet" href="/assets/css/components.css" />
+    <link rel="stylesheet" href="/assets/css/animations.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
+
+    <style>
+        body { background-color: #050505; }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 120px auto 50px;
+            padding: 0 20px;
+            min-height: 80vh;
+        }
+
+        /* --- SIDEBAR --- */
+        .dash-sidebar {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 30px;
+            height: fit-content;
+        }
+
+        .user-profile-summary {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dash-avatar {
+            width: 100px;
+            height: 100px;
+            background-size: cover;
+            background-position: center;
+            background-color: #00ff88; /* Fallback color */
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            border: 3px solid rgba(0, 255, 136, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .dash-username { font-size: 1.2rem; color: #fff; margin-bottom: 5px; }
+        .dash-role {
+            font-size: 0.8rem;
+            color: #00ff88;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(0, 255, 136, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 12px 15px;
+            margin-bottom: 5px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+            border-left: 2px solid transparent;
+        }
+
+        .sidebar-nav a.active {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border-left-color: #00ff88;
+        }
+
+        .btn-change-avatar {
+            font-size: 0.8rem;
+            color: #aaa;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-change-avatar:hover { border-color: #fff; color: #fff; }
+
+        /* --- CONTENT --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 20px;
+            border-radius: 12px;
+        }
+        .stat-card h4 {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .stat-card .value { font-size: 1.5rem; font-weight: 700; color: #fff; }
+        .text-gold { color: #FFD700; }
+        .text-red { color: #ff5555; }
+
+        /* CHARACTER GRID */
+        .char-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Only 2 columns */
+            gap: 20px;
+        }
+
+        .char-slot {
+            background: rgba(0,0,0,0.4);
+            border: 1px dashed rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Active Character Card Style */
+        .char-slot.active {
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            background: linear-gradient(180deg, rgba(0, 255, 136, 0.05), rgba(0,0,0,0.4));
+            align-items: flex-start; /* Align text to left */
+            text-align: left;
+        }
+
+        .char-name { font-size: 1.2rem; color: #fff; font-weight: bold; margin-bottom: 15px; width: 100%; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        
+        .char-detail-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        .char-label { color: rgba(255,255,255,0.5); }
+        .char-val { color: #fff; font-weight: 600; font-family: monospace; }
+        .char-admin-badge {
+            background: #ff5555; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: bold;
+        }
+
+        .btn-logout {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 50, 50, 0.1);
+            color: #ff5555;
+            border: 1px solid rgba(255, 50, 50, 0.2);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-logout:hover { background: rgba(255, 50, 50, 0.2); }
+    </style>
+    <link rel="icon" type="image/png" href="../logo.PNG">
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <script src="/assets/js/navbar.js"></script>
+</head>
+<body>
+
+
+    <main>
+        <div class="hero-bg" style="background-image:url('/assets/images/hero/hero-bg.jpg'); position: fixed; inset: 0; z-index: -1; opacity: 0.3;"></div>
+
+        <div class="dashboard-container">
+            
+            <aside class="dash-sidebar">
+                <div class="user-profile-summary">
+                    <div class="dash-avatar" id="sidebarAvatar" style="background-image: url('/assets/images/default-avatar.png');"></div>
+                    <button class="btn-change-avatar" onclick="changeAvatar()">Change Avatar</button>
+                    
+                    <h3 class="dash-username" id="sidebarName">Loading...</h3>
+                    <span class="dash-role" id="globalAdminBadge">Citizen</span>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <a href="#" class="active">Overview</a>
+                    <a href="#">Donations (Soon)</a>
+                </nav>
+
+                <button onclick="logout()" class="btn-logout">LOGOUT</button>
+            </aside>
+
+            <section class="dash-content">
+                
+                <h2 style="color: #fff; margin-bottom: 20px;">Welcome back, <span id="welcomeName" style="color: #00ff88;">User</span></h2>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>VIP Status</h4>
+                        <div class="value text-gold" id="vipLevel">None</div>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Prime Coins</h4>
+                        <div class="value text-red" id="primeCoins">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Account ID</h4>
+                        <div class="value" id="socialClub">Pending</div>
+                    </div>
+                </div>
+
+                <h3 style="color:#fff; margin-bottom:15px; border-left: 4px solid #00ff88; padding-left: 10px;">My Characters</h3>
+                <div class="char-grid">
+                    <div class="char-slot" id="slot1">
+                        <h3>Slot 1 Empty</h3>
+                        <span style="color:#666;">No Data</span>
+                    </div>
+
+                    <div class="char-slot" id="slot2">
+                        <h3>Slot 2 Empty</h3>
+                        <span style="color:#666;">No Data</span>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // 1. Check Login
+            const userJson = localStorage.getItem('prime_user');
+            if (!userJson) { window.location.href = '/pages/login.html'; return; }
+            
+            const localUser = JSON.parse(userJson);
+            
+            // 2. Load Avatar from LocalStorage (if exists)
+            const savedAvatar = localStorage.getItem('prime_avatar_url');
+            if (savedAvatar) {
+                document.getElementById('sidebarAvatar').style.backgroundImage = `url('${savedAvatar}')`;
+            }
+
+            document.getElementById('sidebarName').innerText = localUser.username;
+            document.getElementById('welcomeName').innerText = localUser.username;
+
+            // 3. Fetch Data
+            try {
+                const response = await fetch(`http://localhost:3000/api/user/${localUser.username}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    const acc = data.account;
+                    const chars = data.characters || []; // Array of character objects
+
+                    // --- ACCOUNT STATS ---
+                    // VIP
+                    const vipLvl = acc.viplvl || 0;
+                    document.getElementById('vipLevel').innerText = vipLvl > 0 ? `Level ${vipLvl}` : "Standard";
+                    
+                    // Prime Coins (Redbucks)
+                    document.getElementById('primeCoins').innerText = (acc.Redbucks || 0).toLocaleString();
+
+                    // Social Club / Status
+                    document.getElementById('socialClub').innerText = (acc.socialclub === 'WAITING_FOR_GAME') ? "Pending Game Login" : acc.socialclub;
+
+                    // --- CHARACTER SLOTS ---
+                    // Map IDs to Character Objects for easier access
+                    // We look for a character whose UUID matches character1 or character2 in account
+                    const char1 = chars.find(c => c.uuid === acc.character1);
+                    const char2 = chars.find(c => c.uuid === acc.character2);
+
+                    renderSlot('slot1', char1);
+                    renderSlot('slot2', char2);
+
+                    // --- GLOBAL ADMIN CHECK ---
+                    // If ANY character has adminlvl > 0, show it on sidebar
+                    let highestAdmin = 0;
+                    chars.forEach(c => {
+                        if (c.adminlvl > highestAdmin) highestAdmin = c.adminlvl;
+                    });
+                    
+                    if (highestAdmin > 0) {
+                        const adminLabel = getAdminLabel(highestAdmin);
+                        const badge = document.getElementById('globalAdminBadge');
+                        badge.innerText = adminLabel;
+                        badge.style.background = "rgba(255, 85, 85, 0.2)";
+                        badge.style.color = "#ff5555";
+                    }
+
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        });
+
+        // Helper to Render a Slot
+        function renderSlot(elementId, charData) {
+            const el = document.getElementById(elementId);
+            
+            if (charData) {
+                // Admin Status for this specific character
+                let adminHtml = '';
+                if (charData.adminlvl > 0) {
+                    adminHtml = `<span class="char-admin-badge">${getAdminLabel(charData.adminlvl)}</span>`;
+                }
+
+                el.classList.add('active');
+                el.innerHTML = `
+                    <div class="char-name">
+                        ${charData.firstname} ${charData.lastname}
+                        ${adminHtml}
+                    </div>
+                    <div class="char-detail-row">
+                        <span class="char-label">UID</span>
+                        <span class="char-val">#${charData.uuid}</span>
+                    </div>
+                    <div class="char-detail-row">
+                        <span class="char-label">Cash</span>
+                        <span class="char-val" style="color:#00ff88;">$${(charData.money || 0).toLocaleString()}</span>
+                    </div>
+                    <div class="char-detail-row">
+                        <span class="char-label">Bank</span>
+                        <span class="char-val" style="color:#00b3ff;">$${(charData.bank || 0).toLocaleString()}</span>
+                    </div>
+                `;
+            } else {
+                el.innerHTML = `<h3>Empty Slot</h3><span style="color:#666;">Create New Character In-Game</span>`;
+                el.classList.remove('active');
+            }
+        }
+
+        // Helper for Admin Labels
+        function getAdminLabel(lvl) {
+            if (lvl === 0) return "Citizen";
+            if (lvl === 1) return "Assistant Admin";
+            if (lvl === 2) return "Game Admin";
+            if (lvl >= 3) return "Senior Admin";
+            return "Staff";
+        }
+
+        // Change Avatar Function
+        function changeAvatar() {
+            const newUrl = prompt("Enter the URL of your new profile picture (Discord avatar link, Imgur, etc.):");
+            if (newUrl && newUrl.startsWith("http")) {
+                localStorage.setItem('prime_avatar_url', newUrl);
+                document.getElementById('sidebarAvatar').style.backgroundImage = `url('${newUrl}')`;
+            } else if (newUrl) {
+                alert("Please enter a valid image URL starting with http/https.");
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('prime_user');
+            localStorage.removeItem('prime_token');
+            window.location.href = '/index.html';
+        }
+    </script>
+
+</body>
+</html>

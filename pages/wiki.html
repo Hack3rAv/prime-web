@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prime Roleplay | Wiki</title>
+
+    <link rel="stylesheet" href="/assets/css/core.css" />
+    <link rel="stylesheet" href="/assets/css/layout.css" />
+    <link rel="stylesheet" href="/assets/css/components.css" />
+    <link rel="stylesheet" href="/assets/css/animations.css" />
+    <link rel="stylesheet" href="/assets/css/wiki.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
+        <link rel="icon" type="image/png" href="../logo.PNG">
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <script src="/assets/js/navbar.js"></script>
+    <script src="/assets/js/utils.js"></script>
+
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+
+    <style>
+        /* Hidden by default */
+        .wiki-content-page {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        /* Show when active */
+        .wiki-content-page.active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .wiki-nav-item { cursor: pointer; transition: 0.3s; }
+        .wiki-nav-item.active { 
+            color: var(--accent-color, #ffcc00); 
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid var(--accent-color, #ffcc00);
+            padding-left: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <main id="app-content">
+
+        <section class="page-header">
+            <div class="container">
+                <h1>Prime RP <span class="text-accent">WIKI</span></h1>
+                <p>Select a category from the sidebar to view specific documentation.</p>
+            </div>
+        </section>
+
+        <section class="wiki-page">
+            <div class="container wiki-container">
+
+                <aside class="wiki-sidebar">
+                    <input type="text" class="wiki-search" placeholder="SEARCH DOCUMENTATION..." />
+                    
+                    <div class="wiki-nav">
+                        <div class="wiki-nav-group">
+                            <div class="wiki-nav-title">CORE RULES</div>
+                            <div class="wiki-nav-item active" data-target="general-rules">General Rules</div>
+                            <div class="wiki-nav-item" data-target="combat-rules">Combat Rules</div>
+                            <div class="wiki-nav-item" data-target="rp-violations">RP Violations</div>
+                        </div>
+
+                        <div class="wiki-nav-group">
+                            <div class="wiki-nav-title">ADMINISTRATION</div>
+                            <div class="wiki-nav-item" data-target="admin-system">Staff & Punishments</div>
+                        </div>
+
+                        <div class="wiki-nav-group">
+                            <div class="wiki-nav-title">GUIDES</div>
+                            <div class="wiki-nav-item" data-target="jobs-guide">Legal & Illegal Jobs</div>
+                            <div class="wiki-nav-item" data-target="controls">Keybinds</div>
+                        </div>
+                    </div>
+                </aside>
+
+                <article class="wiki-content" id="wiki-display-area">
+
+                    <div id="general-rules" class="wiki-content-page active-page">
+                        <h2>1. GENERAL ROLEPLAY RULES</h2>
+                        <div class="wiki-card">
+                            <h3>1.1 Stay In Character (IC)</h3>
+                            <span class="badge badge-primary">CORE</span>
+                            <p>You must remain in character at all times. Using "My mic is broken" or talking about your real-life day in voice chat is FailRP.</p>
+                        </div>
+                        <div class="wiki-card">
+                            <h3>1.2 Powergaming</h3>
+                            <span class="badge badge-danger">BANABLE</span>
+                            <p>Performing impossible acts or forcing actions on others (e.g. "Smashes your head so you die instantly").</p>
+                        </div>
+                    </div>
+
+                    <div id="combat-rules" class="wiki-content-page">
+                        <h2>2. COMBAT RULES</h2>
+                        <div class="wiki-card">
+                            <h3>2.1 RDM (Random Deathmatch)</h3>
+                            <p>Killing someone without any prior verbal interaction or roleplay reason is strictly forbidden.</p>
+                        </div>
+                        <div class="wiki-card">
+                            <h3>2.2 VDM (Vehicle Deathmatch)</h3>
+                            <p>Using your vehicle as a weapon to ram or kill players is not allowed.</p>
+                        </div>
+                    </div>
+
+                    <div id="rp-violations" class="wiki-content-page">
+                        <h2>3. RP VIOLATIONS</h2>
+                        <div class="wiki-card">
+                            <h3>3.1 FearRP</h3>
+                            <p>You must show fear for your life. If someone has a gun to your head, you cannot just run away or pull out your own gun.</p>
+                        </div>
+                    </div>
+
+                    <div id="admin-system" class="wiki-content-page">
+                        <h2>4. ADMINISTRATION</h2>
+                        <div class="wiki-card">
+                            <h3>Staff Assistance</h3>
+                            <p>Use <strong>/report</strong> to contact staff. Do not spam. Provide clips/recordings for proof.</p>
+                        </div>
+                    </div>
+
+                    <div id="jobs-guide" class="wiki-content-page">
+                        <h2>5. JOBS & ECONOMY</h2>
+                        <div class="wiki-card">
+                            <h3>Legal: Delivery & Mining</h3>
+                            <p>Earn clean money at the Job Center. These jobs are safe from police interference.</p>
+                        </div>
+                        <div class="wiki-card">
+                            <h3>Illegal: Drug Crafting</h3>
+                            <p>High reward but high risk. Police can arrest you and seize your items if caught.</p>
+                        </div>
+                    </div>
+
+                    <div id="controls" class="wiki-content-page">
+                        <h2>6. KEYBINDS</h2>
+                        <div class="wiki-card">
+                            <p><strong>F1:</strong> Interaction Menu</p>
+                            <p><strong>K:</strong> Inventory</p>
+                            <p><strong>U:</strong> Lock Vehicle</p>
+                            <p><strong>M:</strong> Phone</p>
+                        </div>
+                    </div>
+
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2025 Prime Roleplay Wiki | Powered by Neopix</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navItems = document.querySelectorAll('.wiki-nav-item');
+            const pages = document.querySelectorAll('.wiki-content-page');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const targetId = item.getAttribute('data-target');
+
+                    // 1. Update Sidebar UI
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    item.classList.add('active');
+
+                    // 2. Switch Content
+                    pages.forEach(page => {
+                        page.classList.remove('active-page');
+                        if (page.id === targetId) {
+                            page.classList.add('active-page');
+                        }
+                    });
+
+                    // 3. Scroll to top of content for mobile users
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+        });
+
+        // Initialize Lenis for smooth scrolling
+        const lenis = new Lenis();
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+/* =====================================================
+   UI COMPONENTS
+   ===================================================== */
+
+/* -----------------------------
+   PRIMARY BUTTON
+----------------------------- */
+.btn-mega {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 40px;
+    background: var(--primary);
+    color: #000;
+
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    clip-path: var(--skew-shape);
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.btn-mega:hover {
+    background: #ffd27a;
+    box-shadow: 0 0 18px rgba(255, 210, 122, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-mega:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* -----------------------------
+   OUTLINE BUTTON
+----------------------------- */
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 36px;
+    border: 1px solid var(--primary);
+    color: var(--text-main);
+
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    clip-path: var(--skew-shape);
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* -----------------------------
+   GLASS PANEL
+----------------------------- */
+.glass-panel {
+    background: var(--glass);
+    border: 1px solid var(--border-soft);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    clip-path: var(--skew-shape);
+}
+
+.glass-panel h3 {
+    color: var(--primary);
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+}
+
+.glass-panel p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* -----------------------------
+   BADGES
+----------------------------- */
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.badge-primary {
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    background: rgba(255, 153, 51, 0.15);
+}
+
+.badge-danger {
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    background: rgba(255, 26, 26, 0.15);
+}
+
+.badge-success {
+    color: var(--success);
+    border: 1px solid var(--success);
+    background: rgba(0, 255, 65, 0.15);
+}
